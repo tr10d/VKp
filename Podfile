@@ -8,5 +8,6 @@ target 'VKp' do
   # Pods for VKp
   pod "VK-ios-sdk" 
   pod 'SnapKit', '~> 5.0.0'
+  pod 'SwiftLint'
   
 end

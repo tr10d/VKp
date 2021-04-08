@@ -6,19 +6,40 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var authService = AuthService()
 
-
+    static var shared: SceneDelegate {
+        let scene = UIApplication.shared.connectedScenes.first
+        let sd = scene?.delegate as? SceneDelegate
+        return sd!
+    }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        authService.delegate = self
+        
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        window?.rootViewController = UIStoryboard(name: "AuthViewController", bundle: nil)
+            .instantiateInitialViewController() as? AuthViewController
+        window?.makeKeyAndVisible()
     }
 
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            VKSdk.processOpen(url, fromApplication: UIApplication.OpenURLOptionsKey.sourceApplication.rawValue)
+        }
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -28,7 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        // Use this method to restart any tasks that were paused (or not yet started) w hen the scene was inactive.
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -50,6 +71,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
-
 }
 
+extension SceneDelegate: AuthServiceDelegate {
+    
+    func authServiceShouldPresent(viewController: UIViewController) {
+        #if DEBUG
+        print(#function)
+        #endif
+        window?.rootViewController?.present(viewController, animated: true, completion: nil)
+    }
+    
+    func authServiceAccessAuthorizationFinished() {
+        #if DEBUG
+        print(#function)
+        #endif
+        let feedVC = UIStoryboard(name: "NewsfeedViewController", bundle: nil)
+            .instantiateInitialViewController() as? NewsfeedViewController
+        let navigationVC = UINavigationController(rootViewController: feedVC!)
+        window?.rootViewController = navigationVC
+    }
+    
+    func authServiceUserAuthorizationFailed() {
+        #if DEBUG
+        print(#function)
+        #endif
+   }
+    
+}
