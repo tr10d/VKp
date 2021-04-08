@@ -3,5 +3,5 @@
 Pods: 
 
 ```
-VK-ios-sdk, SnapKit, SwoftLint
+VK-ios-sdk, SnapKit, SwiftLint
 ```
