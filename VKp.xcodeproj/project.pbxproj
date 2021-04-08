@@ -80,14 +80,13 @@
 		8531915F261DD41E0056586F /* VKp */ = {
 			isa = PBXGroup;
 			children = (
-				85319160261DD41E0056586F /* AppDelegate.swift */,
-				85319162261DD41E0056586F /* SceneDelegate.swift */,
 				854B3275261E34E6005C6ACA /* Services */,
 				854B327F261ED7F3005C6ACA /* VC */,
-				8531916C261DD4230056586F /* Assets.xcassets */,
-				8531916E261DD4230056586F /* LaunchScreen.storyboard */,
+				85319160261DD41E0056586F /* AppDelegate.swift */,
+				85319162261DD41E0056586F /* SceneDelegate.swift */,
 				85319171261DD4230056586F /* Info.plist */,
 				85319169261DD41E0056586F /* VKp.xcdatamodeld */,
+				8531916C261DD4230056586F /* Assets.xcassets */,
 			);
 			path = VKp;
 			sourceTree = "<group>";
@@ -103,6 +102,7 @@
 		854B327F261ED7F3005C6ACA /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				8531916E261DD4230056586F /* LaunchScreen.storyboard */,
 				85319164261DD41E0056586F /* AuthViewController.swift */,
 				854B327B261E399A005C6ACA /* AuthViewController.storyboard */,
 				854B3282261EE637005C6ACA /* NewsfeedViewController.swift */,
