@@ -1,5 +1,6 @@
 # VKp
-![Build Status](https://img.shields.io/github/languages/top/tr10d/VKp)
+![GitHub top language](https://img.shields.io/github/languages/top/tr10d/VKp)
+![GitHub last commit](https://img.shields.io/github/last-commit/tr10d/VKp)
 
 ## Pods: 
 - [VK-ios-sdk](https://github.com/VKCOM/vk-ios-sdk)
