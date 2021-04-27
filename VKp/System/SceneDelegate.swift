@@ -9,13 +9,13 @@ import UIKit
 import VK_ios_sdk
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+  static var shared: SceneDelegate {
+    let scene = UIApplication.shared.connectedScenes.first
+    let delegate = scene?.delegate as? SceneDelegate
+    return delegate!
+  }
   var window: UIWindow?
   var authService = AuthService()
-  //    static var shared: SceneDelegate {
-  //        let scene = UIApplication.shared.connectedScenes.first
-  //        let delegate = scene?.delegate as? SceneDelegate
-  //        return delegate!
-  //    }
 
   func scene(
     _ scene: UIScene,
@@ -29,6 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene = (scene as? UIWindowScene) else { return }
 
     authService.delegate = self
+
     let authVC = UIStoryboard(name: "AuthViewController", bundle: nil)
       .instantiateInitialViewController() as? AuthViewController
     authVC?.configure(authService: authService)

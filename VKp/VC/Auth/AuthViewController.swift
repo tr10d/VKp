@@ -12,7 +12,6 @@ class AuthViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = #colorLiteral(red: 0.9187689424, green: 0.8698328137, blue: 0.5872992873, alpha: 1)
   }
 
   func configure(authService: AuthService) {
@@ -22,8 +21,6 @@ class AuthViewController: UIViewController {
 
 extension AuthViewController {
   @IBAction func sighInTouched(_ sender: UIButton) {
-    //        let authService = SceneDelegate.shared.authService
-    //        authService.wakeUpSession()
     authService?.wakeUpSession()
   }
 }

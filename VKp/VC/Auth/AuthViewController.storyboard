@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v48-SZ-6Fx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v48-SZ-6Fx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,23 +18,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXR-2m-y4U">
-                                <rect key="frame" x="127" y="427.5" width="160" height="41"/>
+                                <rect key="frame" x="127" y="513" width="160" height="41"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="je1-Hx-Za8"/>
                                     <constraint firstAttribute="width" constant="160" id="th7-h5-ZKt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Войти в VK"/>
+                                <state key="normal" title="Войти"/>
                                 <connections>
                                     <action selector="sighInTouched:" destination="v48-SZ-6Fx" eventType="touchUpInside" id="nCT-9g-Vlx"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playstore" translatesAutoresizingMaskIntoConstraints="NO" id="xpu-73-rJO">
+                                <rect key="frame" x="157" y="398" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="9Ll-Pl-DnX"/>
+                                    <constraint firstAttribute="width" constant="100" id="T1Z-xT-iCV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ewp-wn-ZQz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="yXR-2m-y4U" firstAttribute="centerY" secondItem="5Cy-pR-eXw" secondAttribute="centerY" id="f1O-We-sTn"/>
+                            <constraint firstItem="xpu-73-rJO" firstAttribute="centerX" secondItem="5Cy-pR-eXw" secondAttribute="centerX" id="0gk-yc-0Rn"/>
+                            <constraint firstItem="xpu-73-rJO" firstAttribute="centerY" secondItem="5Cy-pR-eXw" secondAttribute="centerY" id="aap-wu-seo"/>
+                            <constraint firstItem="yXR-2m-y4U" firstAttribute="centerY" secondItem="5Cy-pR-eXw" secondAttribute="centerY" constant="85.5" id="f1O-We-sTn"/>
                             <constraint firstItem="yXR-2m-y4U" firstAttribute="centerX" secondItem="5Cy-pR-eXw" secondAttribute="centerX" id="v6z-Nl-D1g"/>
                         </constraints>
                     </view>
@@ -44,6 +54,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="playstore" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
