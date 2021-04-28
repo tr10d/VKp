@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     open func application(
       _ app: UIApplication,
       open url: URL,
-      options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+      options: [UIApplication.OpenURLOptionsKey: Any] = [:]
     ) -> Bool {
         VKSdk.processOpen(url, fromApplication: UIApplication.OpenURLOptionsKey.sourceApplication.rawValue)
         return true
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
         */
         let container = NSPersistentContainer(name: "VKp")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate.

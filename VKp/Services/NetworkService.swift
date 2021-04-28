@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol NetworkServiceDelegate {
+protocol NetworkServiceDelegate: AnyObject {
   func request(from path: String, with parameters: [String: String], completion: @escaping (Data?, Error?) -> Void)
   func requestCombine<T: Decodable>(
     from path: String,

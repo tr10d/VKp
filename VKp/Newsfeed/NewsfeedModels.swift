@@ -44,11 +44,19 @@ struct FeedViewModel {
     var shares: String?
     var views: String?
     var photoAttachment: FeedCellPhotoAttachmentViewModel?
+    var sizes: FeedCellSizesViewModel
   }
 
   struct FeedCellPhotoAttachment: FeedCellPhotoAttachmentViewModel {
     var url: String?
     var width: Int
     var height: Int
+  }
+
+  struct FeedCellSizes: FeedCellSizesViewModel {
+    var postLabelFrame: CGRect
+    var attachmentFrame: CGRect
+    var bottomView: CGRect
+    var viewHeight: CGFloat
   }
 }

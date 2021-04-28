@@ -11,7 +11,7 @@ import Combine
 class WebImageView: UIImageView {
   var cancellable: AnyCancellable?
   func set(imageURL: String?) {
-    isHidden = imageURL == nil
+//    isHidden = imageURL == nil
 
     guard let imageURL = imageURL,
           let url = URL(string: imageURL) else { return }

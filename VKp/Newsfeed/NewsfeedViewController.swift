@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NewsfeedDisplayLogic: class {
+protocol NewsfeedDisplayLogic: AnyObject {
   func displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData)
 }
 
@@ -49,6 +49,10 @@ extension NewsfeedViewController {
 extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
   func viewDidLoadDataSource() {
     table.register(NewsfeedCell.nib, forCellReuseIdentifier: NewsfeedCell.reuseId)
+    table.separatorStyle = .none
+    table.backgroundColor = .clear
+
+    view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,13 +60,13 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    212
+    feedViewModel.cells[indexPath.row].sizes.viewHeight
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView
             .dequeueReusableCell(withIdentifier: NewsfeedCell.reuseId, for: indexPath) as? NewsfeedCell
-      else { fatalError("Unexpected cell") }
+      else { fatalError("Unresolved dequeueReusableCell error") }
     cell.set(viewModel: feedViewModel.cells[indexPath.row])
     return cell
   }

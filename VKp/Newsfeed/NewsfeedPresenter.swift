@@ -14,6 +14,7 @@ protocol NewsfeedPresentationLogic {
 
 class NewsfeedPresenter: NewsfeedPresentationLogic {
   weak var viewController: NewsfeedDisplayLogic?
+  private var cellLayoutCalculator = NewsfeedCellLayoutCalculator()
   private let dateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "ru_RU")
@@ -36,7 +37,9 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
       viewController?.displayData(viewModel: .newsFeed(viewModel: viewModel))
     }
   }
+}
 
+extension NewsfeedPresenter {
   func cellViewModel(
     from item: Json.Newsfeed.Item,
     profiles: [Json.Users.Item],
@@ -44,15 +47,19 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
   ) -> FeedViewModel.Cell {
     let profile = profile(for: item.sourceId, profiles: profiles, groups: groups)
     let photoAttachment = photoAttachment(item: item)
-    return FeedViewModel.Cell(image: profile?.photo ?? "",
-                              name: profile?.name ?? "",
-                              date: dateFormatter.string(from: Date(timeIntervalSince1970: item.date)),
-                              text: item.text,
-                              likes: String(item.likes?.count ?? 0),
-                              comments: String(item.comments?.count ?? 0),
-                              shares: String(item.reposts?.count ?? 0),
-                              views: String(item.views?.count ?? 0),
-                              photoAttachment: photoAttachment)
+    let sizes = cellLayoutCalculator.sizes(postText: item.text, postAttachment: photoAttachment)
+
+    return FeedViewModel.Cell(
+      image: profile?.photo ?? "",
+      name: profile?.name ?? "",
+      date: dateFormatter.string(from: Date(timeIntervalSince1970: item.date)),
+      text: item.text,
+      likes: String(item.likes?.count ?? 0),
+      comments: String(item.comments?.count ?? 0),
+      shares: String(item.reposts?.count ?? 0),
+      views: String(item.views?.count ?? 0),
+      photoAttachment: photoAttachment,
+      sizes: sizes)
   }
 
   private func profile(for sourseId: Int,
@@ -64,8 +71,8 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
     return arrayForSearch .first { $0.id == absSourseId }
   }
 
-  private func photoAttachment(item: Json.Newsfeed.Item) -> FeedViewModel.FeedCellPhotoAttachment? {
-    guard let photos = item.attachments?.compactMap { attachment in attachment.photo },
+  private func photoAttachment(item: Json.Newsfeed.Item) -> FeedCellPhotoAttachmentViewModel? {
+    guard let photos = item.attachments?.compactMap({ attachment in attachment.photo }),
           let first = photos.first else { return nil }
 
     return FeedViewModel.FeedCellPhotoAttachment(url: first.url, width: first.width, height: first.height)

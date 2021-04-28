@@ -4,6 +4,7 @@
 //
 //  Created by  Sergei on 26.04.2021.
 //
+// swiftlint:disable class_delegate_protocol
 
 import Foundation
 
@@ -35,7 +36,7 @@ struct NetworkDataFetcher: NetworkDataFetcherDelegate {
       }
       let json = decodeJSON(type: Json.Newsfeed.self, from: data)
       #if DEBUG
-      debugPrint(json)
+      debugPrint(json!)
       #endif
       response(json?.response)
     }

@@ -29,6 +29,8 @@
 		854973F52637388C00FD5083 /* NewsfeedViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 854973F42637388C00FD5083 /* NewsfeedViewController.storyboard */; };
 		854B3273261E34E1005C6ACA /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854B3272261E34E1005C6ACA /* AuthService.swift */; };
 		854B327C261E399A005C6ACA /* AuthViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 854B327B261E399A005C6ACA /* AuthViewController.storyboard */; };
+		859BE1692639D7DA002472BE /* NewsfeedCellLayoutCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859BE1682639D7DA002472BE /* NewsfeedCellLayoutCalculator.swift */; };
+		85B3B4EF263A00D700229FF9 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B3B4EE263A00D700229FF9 /* Extentions.swift */; };
 		85E2EED4263824360059E3EC /* NewsfeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E2EED3263824360059E3EC /* NewsfeedCell.swift */; };
 		85E2EED6263824CB0059E3EC /* NewsfeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E2EED5263824CB0059E3EC /* NewsfeedCell.xib */; };
 		85E2EED826389B620059E3EC /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E2EED726389B620059E3EC /* WebImageView.swift */; };
@@ -61,6 +63,8 @@
 		854973F42637388C00FD5083 /* NewsfeedViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsfeedViewController.storyboard; sourceTree = "<group>"; };
 		854B3272261E34E1005C6ACA /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		854B327B261E399A005C6ACA /* AuthViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthViewController.storyboard; sourceTree = "<group>"; };
+		859BE1682639D7DA002472BE /* NewsfeedCellLayoutCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedCellLayoutCalculator.swift; sourceTree = "<group>"; };
+		85B3B4EE263A00D700229FF9 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		85E2EED3263824360059E3EC /* NewsfeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedCell.swift; sourceTree = "<group>"; };
 		85E2EED5263824CB0059E3EC /* NewsfeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsfeedCell.xib; sourceTree = "<group>"; };
 		85E2EED726389B620059E3EC /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				854973D326346D0300FD5083 /* NetworkService.swift */,
 				854973E02637124A00FD5083 /* NetworkDataFetcher.swift */,
 				85E2EED726389B620059E3EC /* WebImageView.swift */,
+				85B3B4EE263A00D700229FF9 /* Extentions.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				85E2EED3263824360059E3EC /* NewsfeedCell.swift */,
+				859BE1682639D7DA002472BE /* NewsfeedCellLayoutCalculator.swift */,
 				85E2EED5263824CB0059E3EC /* NewsfeedCell.xib */,
 			);
 			path = Cell;
@@ -367,12 +373,14 @@
 				854973EE26372AAC00FD5083 /* NewsfeedRouter.swift in Sources */,
 				854973ED26372AAC00FD5083 /* NewsfeedWorker.swift in Sources */,
 				85E5841E263975D2005E3E4A /* Users.swift in Sources */,
+				859BE1692639D7DA002472BE /* NewsfeedCellLayoutCalculator.swift in Sources */,
 				85319161261DD41E0056586F /* AppDelegate.swift in Sources */,
 				85E5841C263975B3005E3E4A /* Groups.swift in Sources */,
 				854973DE2636FE5500FD5083 /* Newsfeed.swift in Sources */,
 				854973F126372AAC00FD5083 /* NewsfeedInteractor.swift in Sources */,
 				85319163261DD41E0056586F /* SceneDelegate.swift in Sources */,
 				854973EF26372AAC00FD5083 /* NewsfeedModels.swift in Sources */,
+				85B3B4EF263A00D700229FF9 /* Extentions.swift in Sources */,
 				851714A0262794B000EEF5D8 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
