@@ -22,7 +22,7 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
     dateFormatter.timeZone = .current
     return dateFormatter
   }()
-  
+
   func presentData(response: Newsfeed.Model.Response.ResponseType) {
     switch response {
     case .newsFeed(let feed):
@@ -39,25 +39,35 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
 
   func cellViewModel(
     from item: Json.Newsfeed.Item,
-    profiles: [Users.Item],
-    groups: [Groups.Item]
+    profiles: [Json.Users.Item],
+    groups: [Json.Groups.Item]
   ) -> FeedViewModel.Cell {
     let profile = profile(for: item.sourceId, profiles: profiles, groups: groups)
+    let photoAttachment = photoAttachment(item: item)
     return FeedViewModel.Cell(image: profile?.photo ?? "",
-                       name: profile?.name ?? "",
-                       date: dateFormatter.string(from: Date(timeIntervalSince1970: item.date)),
-                       text: item.text,
-                       likes: String(item.likes?.count ?? 0),
-                       comments: String(item.comments?.count ?? 0),
-                       shares: String(item.reposts?.count ?? 0),
-                       views: String(item.views?.count ?? 0)
-    )
+                              name: profile?.name ?? "",
+                              date: dateFormatter.string(from: Date(timeIntervalSince1970: item.date)),
+                              text: item.text,
+                              likes: String(item.likes?.count ?? 0),
+                              comments: String(item.comments?.count ?? 0),
+                              shares: String(item.reposts?.count ?? 0),
+                              views: String(item.views?.count ?? 0),
+                              photoAttachment: photoAttachment)
   }
 
-  private func profile(for sourseId: Int, profiles: [Users.Item], groups: [Groups.Item]) -> ProfileRepresentable? {
+  private func profile(for sourseId: Int,
+                       profiles: [Json.Users.Item],
+                       groups: [Json.Groups.Item]) -> ProfileRepresentable? {
     let isUser = sourseId > 0
     let absSourseId = abs(sourseId)
     let arrayForSearch: [ProfileRepresentable] = isUser ? profiles : groups
     return arrayForSearch .first { $0.id == absSourseId }
+  }
+
+  private func photoAttachment(item: Json.Newsfeed.Item) -> FeedViewModel.FeedCellPhotoAttachment? {
+    guard let photos = item.attachments?.compactMap { attachment in attachment.photo },
+          let first = photos.first else { return nil }
+
+    return FeedViewModel.FeedCellPhotoAttachment(url: first.url, width: first.width, height: first.height)
   }
 }

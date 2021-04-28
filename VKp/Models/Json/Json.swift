@@ -37,31 +37,15 @@ struct Json {
 
   // MARK: - Size
   struct Size: Codable {
-    let height: Int
+    let type: String
     let url: String
-    let type: String
     let width: Int
+    let height: Int
   }
-}
 
-struct Groups: Codable {
-  struct Item: Codable, ProfileRepresentable {
-    let id: Int
-    let name, screenName: String
-    let type: String
-    let photo50, photo100, photo200: String
-
-    var photo: String { photo100 }
-  }
-}
-
-struct Users: Codable {
-  struct Item: Codable, ProfileRepresentable {
-    let id: Int
-    let firstName, lastName: String
-    let photo50, photo100, photo200: String?
-
-    var name: String { "\(firstName) \(lastName)" }
-    var photo: String { photo100 ?? "" }
+  // MARK: - Size
+  struct Attachment: Codable {
+      let type: String
+      let photo: Photo.Item?
   }
 }

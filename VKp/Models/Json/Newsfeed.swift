@@ -30,6 +30,7 @@ extension Json {
       let likes: Json.Likes?
       let reposts: Json.Reposts?
       let views: Json.Views?
+      let attachments: [Json.Attachment]?
     }
   }
 }

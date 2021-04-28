@@ -16,7 +16,15 @@ protocol FeedCellViewModel {
   var comments: String? { get }
   var shares: String? { get }
   var views: String? { get }
+  var photoAttachment: FeedCellPhotoAttachmentViewModel? { get }
 }
+
+protocol FeedCellPhotoAttachmentViewModel {
+  var url: String? { get }
+  var width: Int { get }
+  var height: Int { get }
+}
+
 class NewsfeedCell: UITableViewCell {
   static let reuseId = "NewsfeedCell"
   static let nib = UINib(nibName: "NewsfeedCell", bundle: nil)
@@ -25,6 +33,7 @@ class NewsfeedCell: UITableViewCell {
   @IBOutlet weak var avatarNameLabel: UILabel!
   @IBOutlet weak var avatarDateLabel: UILabel!
   @IBOutlet weak var postLabel: UILabel!
+  @IBOutlet weak var postImageView: WebImageView!
   @IBOutlet weak var heartLabel: UILabel!
   @IBOutlet weak var bubbleLabel: UILabel!
   @IBOutlet weak var arrowLabel: UILabel!
@@ -39,6 +48,7 @@ class NewsfeedCell: UITableViewCell {
     avatarNameLabel.text = viewModel.name
     avatarDateLabel.text = viewModel.date
     postLabel.text = viewModel.text
+    postImageView.set(imageURL: viewModel.photoAttachment?.url)
     heartLabel.text = viewModel.likes
     bubbleLabel.text = viewModel.comments
     arrowLabel.text = viewModel.shares
