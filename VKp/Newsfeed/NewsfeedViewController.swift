@@ -49,6 +49,7 @@ extension NewsfeedViewController {
 extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
   func viewDidLoadDataSource() {
     table.register(NewsfeedCell.nib, forCellReuseIdentifier: NewsfeedCell.reuseId)
+    table.register(NewsfeedCellCode.self, forCellReuseIdentifier: NewsfeedCellCode.reuseId)
     table.separatorStyle = .none
     table.backgroundColor = .clear
 
@@ -60,14 +61,19 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    feedViewModel.cells[indexPath.row].sizes.viewHeight
+    200 //feedViewModel.cells[indexPath.row].sizes.viewHeight
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//    guard let cell = tableView
+//            .dequeueReusableCell(withIdentifier: NewsfeedCell.reuseId, for: indexPath) as? NewsfeedCell
+//      else { fatalError("Unresolved dequeueReusableCell error") }
     guard let cell = tableView
-            .dequeueReusableCell(withIdentifier: NewsfeedCell.reuseId, for: indexPath) as? NewsfeedCell
+            .dequeueReusableCell(withIdentifier: NewsfeedCellCode.reuseId, for: indexPath) as? NewsfeedCellCode
       else { fatalError("Unresolved dequeueReusableCell error") }
-    cell.set(viewModel: feedViewModel.cells[indexPath.row])
+    let viewModel = feedViewModel.cells[indexPath.row]
+    cell.textLabel?.text = viewModel.text
+//   cell.set(viewModel: feedViewModel.cells[indexPath.row])
     return cell
   }
 }

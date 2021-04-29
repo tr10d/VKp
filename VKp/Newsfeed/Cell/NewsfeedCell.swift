@@ -54,6 +54,11 @@ class NewsfeedCell: UITableViewCell {
     super.awakeFromNib()
     configure()
   }
+
+  override func prepareForReuse() {
+    avatarImageView.set(imageURL: nil)
+    postImageView.set(imageURL: nil)
+  }
 }
 
 extension NewsfeedCell {

@@ -11,10 +11,11 @@ import Combine
 class WebImageView: UIImageView {
   var cancellable: AnyCancellable?
   func set(imageURL: String?) {
-//    isHidden = imageURL == nil
-
     guard let imageURL = imageURL,
-          let url = URL(string: imageURL) else { return }
+          let url = URL(string: imageURL) else {
+      self.image = nil
+      return
+    }
 
     cancellable = URLSession.shared
       .dataTaskPublisher(for: url)

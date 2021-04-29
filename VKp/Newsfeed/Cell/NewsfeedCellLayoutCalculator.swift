@@ -53,22 +53,26 @@ extension NewsfeedCellLayoutCalculator: NewsfeedCellLayoutCalculatorDelegate {
 
     var attachmentFrame = CGRect(
       origin: CGPoint(
-        x: Constants.postInsets.left,
-        y: postLabelFrame.origin.y + postLabelFrame.size.height),
+        x: 0,
+        y: postLabelFrame.maxY),
       size: CGSize.zero)
-    if let postAttachment = postAttachment, postAttachment.height > 0 {
-      let width = cardViewWidth - Constants.attachmentInsets.right - Constants.attachmentInsets.left
+    if let postAttachment = postAttachment, postAttachment.height > 0, postAttachment.width > 0 {
+      let width = cardViewWidth
+      let ratio = width / CGFloat(postAttachment.width)
+      let height = ceil(CGFloat(postAttachment.height) * ratio)
       attachmentFrame.origin.y += Constants.attachmentInsets.top
-      attachmentFrame.size = CGSize(width: width, height: CGFloat(postAttachment.height))
+      attachmentFrame.size = CGSize(width: width, height: height)
     }
 
     let bottomView = CGRect(
       origin: CGPoint(
-        x: Constants.cardInsets.left,
-        y: attachmentFrame.origin.y + attachmentFrame.size.height),
-      size: CGSize(width: cardViewWidth, height: Constants.bottomHeight))
+        x: 0,
+        y: attachmentFrame.maxY),
+      size: CGSize(
+        width: cardViewWidth,
+        height: Constants.bottomHeight))
 
-    let viewHeight = bottomView.origin.y + Constants.bottomHeight + Constants.cardInsets.bottom
+    let viewHeight = bottomView.maxY + Constants.cardInsets.bottom
 
     return FeedViewModel.FeedCellSizes(
       postLabelFrame: postLabelFrame,
